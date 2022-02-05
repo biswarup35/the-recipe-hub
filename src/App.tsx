@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
 import { SWRConfig } from "swr";
-import { Home, Navbar, Footer, Indian, Recipe } from "./views";
+import { Navbar, Footer, Indian, Recipe } from "./views";
 
 const App = () => {
   const baseUrl = process.env.REACT_APP_BASE_URL;
