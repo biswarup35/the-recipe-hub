@@ -2,15 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import { Loading } from ".";
-import {
-  Card,
-  Container,
-  Divider,
-  Grid,
-  Stack,
-  Image,
-  Spinner,
-} from "../components";
+import { Card, Container, Divider, Grid, Stack, Image } from "../components";
 import { TimeIcon, UserGroupIcon } from "../icons";
 
 const Recipe = () => {
