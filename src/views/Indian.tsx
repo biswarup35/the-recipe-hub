@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+import { Loading } from ".";
 
 import { Container, Card, CardContainer, CardImage, Grid } from "../components";
 import { useRecipes } from "../hooks";
@@ -9,7 +10,7 @@ const Indian = () => {
   const recipes = data?.recipes;
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   return (
     <Container className="my-2" maxWidth="lg">

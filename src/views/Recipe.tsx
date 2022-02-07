@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
+import { Loading } from ".";
 import {
   Card,
   Container,
@@ -10,20 +11,15 @@ import {
   Image,
   Spinner,
 } from "../components";
-import { useMediaQuery } from "../hooks";
 import { TimeIcon, UserGroupIcon } from "../icons";
 
 const Recipe = () => {
-  const test = useMediaQuery("sm-down");
-
-  console.log(test);
-
   const { recipe_id } = useParams();
   const { data, error } = useSWR(`/recipes/${recipe_id}`);
   const recipe = data?.data;
 
   if (!data && !error) {
-    return <Spinner color="secondary" />;
+    return <Loading />;
   }
   return (
     <React.Fragment>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Container,
@@ -13,8 +13,12 @@ import { MenuIcon } from "../../icons";
 
 export const menuList = [
   {
-    category: "indina",
-    label: "India",
+    category: "indian",
+    label: "Indian",
+  },
+  {
+    category: "mexican",
+    label: "Mexican",
   },
   {
     category: "chinese",
@@ -34,12 +38,18 @@ const Header = () => {
   const sm = useMediaQuery("sm-down");
   const [open, setOpen] = useState(false);
 
+  const handleClose = useCallback(() => {
+    setOpen(false);
+  }, [setOpen]);
+
   return (
     <React.Fragment>
       <AppBar color="primary">
         <Container maxWidth="lg">
           <Toolbar variant="dense">
-            <h3 style={{ flexGrow: 1 }}>The Recipe Hub</h3>
+            <Link to="/" style={{ flexGrow: 1, textDecoration: "none" }}>
+              <h3>The Recipe Hub</h3>
+            </Link>
             {!sm && (
               <nav>
                 <Stack direction="row" alignItems="center" gap={1}>
@@ -69,12 +79,10 @@ const Header = () => {
       <Drawer onOpen={open}>
         <Stack className="mx-2 my-2" alignItems="center">
           <Button
-            onClick={() => {
-              setOpen(false);
-            }}
-            className="px-2 py-1 bg-secondary-light radius-1 pointer"
+            onClick={handleClose}
+            className="px-2 py-1 bg-tertiary radius-1 pointer"
           >
-            close
+            Close
           </Button>
         </Stack>
         <Stack className="mx-2" direction="column" alignItems="center" gap={1}>
@@ -84,7 +92,10 @@ const Header = () => {
               key={item.label}
               to={`/category/${item.category}`}
             >
-              <Button className="px-2 py-1 bg-secondary-light radius-1 pointer full-width">
+              <Button
+                onClick={handleClose}
+                className="px-2 py-1 bg-secondary-light radius-1 pointer full-width"
+              >
                 {item.label}
               </Button>
             </Link>
