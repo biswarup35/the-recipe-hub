@@ -18,7 +18,7 @@ const Recipe = () => {
       <Container className="my-3" maxWidth="md">
         <Grid container gap={2}>
           <Grid item xs={12} sm={6}>
-            <Image src={recipe.image.url} alt="Chilli Idli Recipe" />
+            <Image src={recipe.image.url} alt={recipe.image.alt} />
           </Grid>
           <Grid item xs={12} sm={6}>
             <Card className="full-height" variant="outlined">
