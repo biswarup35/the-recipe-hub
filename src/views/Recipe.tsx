@@ -1,14 +1,22 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
+import { useSnapshot } from "valtio";
 import { Loading } from ".";
+import { commentBox } from "../App/comments";
 import { Card, Container, Divider, Grid, Stack, Image } from "../components";
+import { CommentForm, Comments } from "../components/comments";
+import { useComments } from "../hooks";
 import { TimeIcon, UserGroupIcon } from "../icons";
+// import comments from "../types/comments";
 
 const Recipe = () => {
   const { recipe_id } = useParams();
   const { data, error } = useSWR(`/recipes/${recipe_id}`);
   const recipe = data?.data;
+
+  const { show } = useSnapshot(commentBox);
+  const { comments } = useComments(recipe_id ?? "");
 
   if (!data && !error) {
     return <Loading />;
@@ -83,6 +91,15 @@ const Recipe = () => {
             </Stack>
           </Grid>
         </Grid>
+      </Container>
+      <Container className="my-2" maxWidth="lg">
+        <h4 className="py-2">{`Comments (${comments.length ?? 0})`}</h4>
+        {show && (
+          <div className="my-2">
+            <CommentForm parentId={recipe_id ?? null} />
+          </div>
+        )}
+        <Comments data={comments} />
       </Container>
     </React.Fragment>
   );
