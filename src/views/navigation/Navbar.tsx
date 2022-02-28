@@ -10,6 +10,7 @@ import {
 } from "../../components";
 import { useMediaQuery } from "../../hooks";
 import { MenuIcon } from "../../icons";
+import Logo from "../../icons/Logo";
 
 export const menuList = [
   {
@@ -48,7 +49,7 @@ const Header = () => {
         <Container maxWidth="lg">
           <Toolbar variant="dense">
             <Link to="/" style={{ flexGrow: 1, textDecoration: "none" }}>
-              <h3>The Recipe Hub</h3>
+              <Logo />
             </Link>
             {!sm && (
               <nav>
